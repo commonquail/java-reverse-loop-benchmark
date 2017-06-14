@@ -13,6 +13,10 @@ it were, it would probably impact the world economy more to power a computer
 for the time it takes to convince a maintainer that the reverse loop has no
 off-by-one errors than to write the slower version.
 
+> After writing the above I realised some of my reverse loops did in fact have
+> an off-by-one error to their detriment. I then found the same error in the
+> blog post. Correcting this did not seem to affect the outcome, though.
+
 Caching the array length did yield a speedup over not caching it, but the
 difference was even smaller than the difference between forward and reverse
 loops.
@@ -39,7 +43,7 @@ A "reverse" loop is the semantically equivalent version that traverses
 the opposite direction:
 
 ```java
-for (int i = 42; i >= 0; i--) {
+for (int i = 42 - 1; i >= 0; i--) {
     thing(i);
 }
 ```

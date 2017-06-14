@@ -54,7 +54,7 @@ public class LoopDirection {
     @Benchmark
     public int reverse_uncached_bound() {
         int sum = 0;
-        for (int i = items.length; i >= 0; i--) {
+        for (int i = items.length - 1; i >= 0; i--) {
             sum += i;
         }
         return sum;
@@ -64,7 +64,7 @@ public class LoopDirection {
     public int reverse_cached_bound() {
         int sum = 0;
         final int len = items.length;
-        for (int i = len; i >= 0; i--) {
+        for (int i = len - 1; i >= 0; i--) {
             sum += i;
         }
         return sum;
