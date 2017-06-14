@@ -4,7 +4,21 @@ Do reverse loops run faster than forward loops in Java?
 
 ## Conclusion
 
-Stay tuned.
+Nope.
+
+Forward loops consistently run faster than reverse loops. However, we're
+talking about sub-nanosecond differences for small arrays on my machine. Not
+only is the correlation between bytecode count and execution not 1:1, even if
+it were, it would probably impact the world economy more to power a computer
+for the time it takes to convince a maintainer that the reverse loop has no
+off-by-one errors than to write the slower version.
+
+Caching the array length did yield a speedup over not caching it, but the
+difference was even smaller than the difference between forward and reverse
+loops.
+
+I would have liked to inspect the final assembly but [enabling
+`PrintAssembly`][asm] is a lot more work than I'm willing to put into this.
 
 ## Premise
 
@@ -57,5 +71,6 @@ $ mvn package
 $ java -jar target/benchmarks.jar
 ```
 
+[asm]: https://wiki.openjdk.java.net/display/HotSpot/PrintAssembly
 [blog]: https://medium.com/@TravCav/why-reverse-loops-are-faster-a09d65473006
 [spec]: https://docs.oracle.com/javase/specs/jls/se7/html/jls-14.html#jls-14.14
